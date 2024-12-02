@@ -42,7 +42,7 @@ is_safe_with_dampener <- function(levels) {
   return(FALSE)
 }
 
-data <- readLines("C:\\Users\\casarni002\\Downloads\\02.txt") %>%
+data <- readLines("02.txt") %>%
   strsplit(" ") %>%
   map(as.numeric)
 
