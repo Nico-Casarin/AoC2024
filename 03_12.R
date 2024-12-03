@@ -8,15 +8,19 @@ multiply_elements <- function(x) {
 
 df <- readLines('files/03.txt')
 
+sum <- 0
 
-df_clean <- str_extract_all(df, "mul\\(\\d+(,\\d+)*\\)")
+df <- str_extract_all(df, "mul\\(\\d+(,\\d+)*\\)")
 
-for (e in seq_along(abc)) {
-  abc[[e]] <- gsub("mul\\(", "", abc[[e]])
-  abc[[e]] <- gsub("\\)", "", abc[[e]])
+for (i in seq_along(df_clean)) {
+  for (e in seq_along(df_clean)) {
+    df_clean[[e]] <- gsub("mul\\(", "", df_clean[[e]])
+    df_clean[[e]] <- gsub("\\)", "", df_clean[[e]])
+  }
+  mult_vector <- sapply(df_clean[[i]], function(x) {
+    multiply_elements(x)
+  })
+  sum <- sum(mult_vector)+sum
 }
-test <- sapply(abc[[1]], function(x) {
-  multiply_elements(x)
-})
+print(sum)
 
-sum(test)
